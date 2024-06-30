@@ -171,7 +171,7 @@ export default function FloppyBird() {
   return (
     <div className="relative flex flex-col h-screen bg-black justify-center items-center">
       <div
-        className="h-[600px] w-[500px] relative border-pearl rounded-t-md border-8 bg-blue-400 flex overflow-hidden bg-[url('/background.png')] bg-no-repeat bg-cover bg-center rounded-md"
+        className="h-[600px] w-[500px] relative border-pearl rounded-t-md border-8 bg-blue-400 flex overflow-hidden bg-[url('/background.png')] bg-no-repeat bg-cover bg-center"
         tabIndex={0}
         autoFocus
       >
