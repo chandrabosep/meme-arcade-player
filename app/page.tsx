@@ -10,7 +10,7 @@ export default function page() {
     <div className="flex flex-col gap-y-12 text-cream w-full">
       <Navbar />
       <div className="w-full flex flex-col rounded-lg">
-        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-2 ">
+        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-5 ">
           <div className="flex items-center gap-x-3">
             <Image
               src="/arcade-white.svg"
@@ -26,7 +26,7 @@ export default function page() {
             </div>
           </div>
         </div>
-        <div className="pl-6 md:pl-0 py-6 flex flex-row w-full overflow-x-scroll gap-x-4 rounded-b-lg">
+        <div className="mx-5 md:pl-0 py-6 flex flex-row w-full overflow-x-scroll gap-x-4 rounded-b-lg">
           {[
             {
               title: "The Flying Burd",
@@ -45,7 +45,7 @@ export default function page() {
       </div>
 
       <div className="w-full flex flex-col rounded-lg">
-        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-2 ">
+        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-5 ">
           <div className="flex items-center gap-x-3">
             <Image
               src="/solo.svg"
@@ -61,12 +61,42 @@ export default function page() {
             </div>
           </div>
         </div>
-        <div className="pl-6 py-6 flex flex-row w-full overflow-x-scroll gap-x-4 rounded-b-lg">
+        <div className="pl-6 py-6 flex flex-row flex-wrap gap-5 w-full  rounded-b-lg">
           {[
+            {
+              title: "Pepe Run",
+              image: "/carfighter.png",
+              slug: "dino",
+            },
             {
               title: "Racing Kars",
               image: "/carfighter.png",
-              slug: "racing-kars",
+              slug: "dino",
+            },
+            {
+              title: "Racing Kars",
+              image: "/carfighter.png",
+              slug: "dino",
+            },
+            {
+              title: "Racing Kars",
+              image: "/carfighter.png",
+              slug: "dino",
+            },
+            {
+              title: "Racing Kars",
+              image: "/carfighter.png",
+              slug: "dino",
+            },
+            {
+              title: "Racing Kars",
+              image: "/carfighter.png",
+              slug: "dino",
+            },
+            {
+              title: "Racing Kars",
+              image: "/carfighter.png",
+              slug: "dino",
             },
           ].map((item, index) => (
             <Card
@@ -80,7 +110,7 @@ export default function page() {
       </div>
 
       <div className="w-full flex flex-col rounded-lg">
-        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-2 ">
+        <div className="w-11/12 md:w-full mx-auto flex items-center justify-between bg-black text-cream  py-4 px-5 ">
           <div className="flex items-center gap-x-3">
             <Image
               src="/slot.svg"
