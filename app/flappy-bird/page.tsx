@@ -1,7 +1,9 @@
 "use client";
 
 import { useInterval } from "@/hooks/useInterval";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useCallback, useRef } from "react";
 
 interface Pillar {
@@ -18,7 +20,7 @@ const BIRD_X = 100;
 const JUMP_HEIGHT = 5;
 const GRAVITY = 1.5;
 const PILLAR_SPEED = 2;
-const SPEED_INCREASE = 0.5;
+const SPEED_INCREASE = 2.5;
 
 export default function FloppyBird() {
   const [pillars, setPillars] = useState<Pillar[]>([]);
@@ -89,11 +91,11 @@ export default function FloppyBird() {
           const lastStart = filteredPillars.length
             ? filteredPillars[filteredPillars.length - 1].start
             : GAME_WIDTH;
-          const newPillars = Array.from({ length: 5 }).map((_, index) =>
+          const newPillars = Array.from({ length: 10 }).map((_, index) =>
             getRandomInt(GAME_HEIGHT, GAME_WIDTH, lastStart + 180 * index)
           );
           filteredPillars.push(...newPillars);
-          console.log("Speed increased");
+
           setGameSpeed((prev) => prev + SPEED_INCREASE);
         }
 
@@ -130,7 +132,7 @@ export default function FloppyBird() {
     return () => clearInterval(gameLoop);
   }, [getRandomInt, checkCollision, gameOver, checkBoundary, gameSpeed]);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === "ArrowUp" || e.key === " ") {
       isJumpingRef.current = true;
     } else if (e.key.toLowerCase() === "r") {
@@ -141,6 +143,22 @@ export default function FloppyBird() {
     }
   }, []);
 
+  const handleKeyUp = useCallback((e: KeyboardEvent) => {
+    if (e.key === "ArrowUp" || e.key === " ") {
+      isJumpingRef.current = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [handleKeyDown, handleKeyUp]);
+
   useInterval(() => {
     if (!gameOver) {
       setScore((prevScore) => {
@@ -150,19 +168,11 @@ export default function FloppyBird() {
     }
   }, 1000);
 
-  const handleKeyUp = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === "ArrowUp" || e.key === " ") {
-      isJumpingRef.current = false;
-    }
-  }, []);
-
   return (
-    <div className="flex h-screen bg-black justify-center items-center">
+    <div className="relative flex flex-col h-screen bg-black justify-center items-center">
       <div
-        className="h-[600px] w-[500px] border-2 relative border-black bg-blue-400 flex overflow-hidden bg-[url('/background.png')] bg-no-repeat bg-cover bg-center"
+        className="h-[600px] w-[500px] relative border-pearl rounded-t-md border-8 bg-blue-400 flex overflow-hidden bg-[url('/background.png')] bg-no-repeat bg-cover bg-center rounded-md"
         tabIndex={0}
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
         autoFocus
       >
         <Image
@@ -210,6 +220,21 @@ export default function FloppyBird() {
           </div>
         )}
       </div>
+      <div
+        className="border-b-[3px] border-x-[3px] bg-pearl border-pearl
+       rounded-b-md p-4 w-[500px]"
+      >
+        <Image
+          src="/controllers.svg"
+          alt="alt"
+          className="w-fit mx-auto"
+          width={500}
+          height={500}
+        />
+      </div>
+      <Link href="/" className="absolute top-8 left-8">
+        <ArrowLeft className="size-6 text-white cursor-pointer" />
+      </Link>
     </div>
   );
 }
