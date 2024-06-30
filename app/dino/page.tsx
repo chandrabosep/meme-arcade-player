@@ -201,7 +201,7 @@ export default function DinoGame({ playerImg }: { playerImg?: string }) {
         )}
       </div>
       <div
-        className="border-b-[3px] border-x-[3px] bg-pearl border-pearl
+        className="relative border-b-[3px] border-x-[3px] bg-pearl border-pearl
        rounded-b-md p-4 w-[1200px]"
       >
         <Image
@@ -211,6 +211,9 @@ export default function DinoGame({ playerImg }: { playerImg?: string }) {
           width={500}
           height={500}
         />
+        <div className="absolute right-2 bottom-2 text-sm">
+          Press <span className="text-red-500">Space</span> to jump
+        </div>
       </div>
       <Link href="/" className="absolute top-8 left-8">
         <ArrowLeft className="size-6 text-white cursor-pointer" />

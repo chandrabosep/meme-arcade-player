@@ -222,7 +222,7 @@ export default function FloppyBird() {
       </div>
       <div
         className="border-b-[3px] border-x-[3px] bg-pearl border-pearl
-       rounded-b-md p-4 w-[500px]"
+       rounded-b-md p-4 w-[500px] relative"
       >
         <Image
           src="/controllers.svg"
@@ -231,6 +231,9 @@ export default function FloppyBird() {
           width={500}
           height={500}
         />
+        <div className="absolute right-2 bottom-2 text-sm">
+          Press <span className="text-red-500">Space</span> to fly
+        </div>
       </div>
       <Link href="/" className="absolute top-8 left-8">
         <ArrowLeft className="size-6 text-white cursor-pointer" />
