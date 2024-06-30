@@ -1,5 +1,6 @@
 "use client";
 
+import { useInterval } from "@/hooks/useInterval";
 import Image from "next/image";
 import { useEffect, useState, useCallback, useRef } from "react";
 
@@ -25,6 +26,7 @@ export default function FloppyBird() {
   const birdPositionRef = useRef({ x: BIRD_X, y: 200 });
   const [gameSpeed, setGameSpeed] = useState(PILLAR_SPEED);
   const isJumpingRef = useRef(false);
+  const [score, setScore] = useState(0);
 
   const getRandomInt = useCallback(
     (height: number, width: number, delta: number): Pillar => {
@@ -136,8 +138,18 @@ export default function FloppyBird() {
       setGameOver(false);
       setPillars([]);
       birdPositionRef.current = { x: BIRD_X, y: 200 };
+      setScore(0);
     }
   }, []);
+
+  useInterval(() => {
+    if (!gameOver) {
+      setScore((prevScore) => {
+        const newScore = prevScore + 1;
+        return newScore;
+      });
+    }
+  }, 1000);
 
   const handleKeyUp = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "ArrowUp" || e.key === " ") {
@@ -188,9 +200,14 @@ export default function FloppyBird() {
             />
           </div>
         ))}
+        <div className="absolute top-4 left-4 text-white text-2xl">
+          Score: {score}
+        </div>
         {gameOver && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-4xl">
-            Game Over
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white text-4xl">
+            <div>Game Over</div>
+            <div className="text-2xl mt-4">Total Score: {score}</div>
+            <div className="text-lg mt-2">Press 'R' to restart</div>
           </div>
         )}
       </div>

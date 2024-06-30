@@ -18,8 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`bg-yellow`}>
         <OnchainProviders>
-          {/* <Navbar /> */}
-
           <div className="max-w-screen-2xl h-screen mx-auto py-6">
             {children}
           </div>
