@@ -20,7 +20,9 @@ export default function RootLayout({
         <OnchainProviders>
           {/* <Navbar /> */}
 
-          <div className="max-w-screen-2xl mx-auto py-6">{children}</div>
+          <div className="max-w-screen-2xl h-screen mx-auto py-6">
+            {children}
+          </div>
         </OnchainProviders>
       </body>
     </html>

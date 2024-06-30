@@ -106,7 +106,6 @@ export default function FloppyBird() {
           )
         : Math.max(birdPositionRef.current.y - GRAVITY, 0);
 
-      // Collision check
       setPillars((prevPillars) => {
         const collision = prevPillars.some((pillar) =>
           checkCollision(birdPositionRef.current, pillar)
@@ -147,7 +146,7 @@ export default function FloppyBird() {
   }, []);
 
   return (
-    <main className="flex h-screen justify-center items-center">
+    <div className="flex h-screen bg-black justify-center items-center">
       <div
         className="h-[600px] w-[500px] border-2 relative border-black bg-blue-400 flex overflow-hidden bg-[url('/background.png')] bg-no-repeat bg-cover bg-center"
         tabIndex={0}
@@ -195,6 +194,6 @@ export default function FloppyBird() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
