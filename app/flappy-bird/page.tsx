@@ -86,12 +86,11 @@ export default function FloppyBird() {
         );
 
         if (filteredPillars.length < 10) {
+          const lastStart = filteredPillars.length
+            ? filteredPillars[filteredPillars.length - 1].start
+            : GAME_WIDTH;
           const newPillars = Array.from({ length: 5 }).map((_, index) =>
-            getRandomInt(
-              GAME_HEIGHT,
-              GAME_WIDTH,
-              filteredPillars[filteredPillars.length - 1].start + 180 * index
-            )
+            getRandomInt(GAME_HEIGHT, GAME_WIDTH, lastStart + 180 * index)
           );
           filteredPillars.push(...newPillars);
           console.log("Speed increased");
